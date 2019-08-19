@@ -6,7 +6,6 @@ export default class BookList extends React.Component{
     render(){
         console.log(this.props)
          let books=this.props.books.map((item,idx)=>{
-             console.log(item)
          return(
             <div key={idx}>
                 <Book 

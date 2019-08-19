@@ -7,23 +7,17 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      authors:'',
-      titles:'',
-      images:'',
-      books:''
+      books:'',
+      searchTerm:''
     }
   } 
+  updateSearchTerm=(term)=>{
+    this.setState({
+      searchTerm:term
+    })
+   this.fetch(term)
+  }
   sortData=(responseJson)=>{
-    console.log(responseJson.items)
-    let authors= responseJson.items.map((item)=>item.volumeInfo.authors);
-    let data=responseJson.items
-   for(let i=0;i<data.length;i++){
-      if(authors[i]===undefined){
-        authors[i]="none listed"
-      }
-   };
-  let titles= responseJson.items.map((item)=>item.volumeInfo.title);
-  let images= responseJson.items.map((item)=>item.volumeInfo.imageLinks.thumbnail);
    let books= responseJson.items.map((item)=>{
      return {
       title:item.volumeInfo.title, 
@@ -34,9 +28,6 @@ class App extends React.Component {
       };
    });
    this.setState({
-     authors:authors,
-     titles:titles,
-     images:images,
      books:books
    })
   }
@@ -50,13 +41,11 @@ getPrice=(saleInfo)=>{
     return 'Free';
   }else{
     return 'Unknown';
-  }
+  }}
 
-}
-
-  componentDidMount(){
-    const searchTerm="flowers+inauthor"
-    const url=`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
+  fetch=(term)=>{
+    const url=`https://www.googleapis.com/books/v1/volumes?q=${term}`
+    
     const options = {
       method: 'GET',
       headers: {
@@ -64,6 +53,7 @@ getPrice=(saleInfo)=>{
         "Content-Type": "application/json"
       }
     };
+    console.log(url);
     fetch(url,options)
     .then(response=> {
       if (response.ok){
@@ -78,14 +68,14 @@ getPrice=(saleInfo)=>{
   
  
   render(){
-    let mounted= this.state.authors.length>1?<BookList authors={this.state.authors} titles={this.state.titles} images={this.state.images} books={this.state.books}/>:null;
-    console.log(this.state.books)
+    let mounted= this.state.books.length>1?<BookList  books={this.state.books}/>:null;
+    console.log(this.state.searchTerm)
   return (
     <div className="App">
       <header className="App-header">
       <h1>Google Book Search</h1>
       </header>
-      <SearchBox/>
+      <SearchBox updateSearchTerm={this.updateSearchTerm}/>
       {mounted}
       
     </div>

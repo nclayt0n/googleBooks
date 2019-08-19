@@ -6,9 +6,10 @@ import './SearchBox.css'
 
 export default class SearchBox extends React.Component{
     render(){
+        console.log(this.props)
         return(
             <div className="searchBox">
-                <SearchBar/>
+                <SearchBar updateSearchTerm={this.props.updateSearchTerm}/>
                 <FilterOptions/>
             </div>
         )

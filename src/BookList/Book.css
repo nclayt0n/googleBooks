@@ -29,6 +29,7 @@ img {
     display: flex;
     flex: 3;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 ul {
