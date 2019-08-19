@@ -1,0 +1,31 @@
+.searchBox {
+    background-color: grey;
+    padding: 10px;
+}
+
+.SearchBarContainer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.FilterOptionsContainer {
+    display: flex;
+    justify-content: center;
+    border: none;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: rgb(145, 145, 145);
+}
+
+.FilterOptions {
+    border: none;
+}
+
+.legend {
+    display: none;
+}
+
+.filter {
+    width: 150px;
+}
