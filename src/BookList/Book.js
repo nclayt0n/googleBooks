@@ -3,25 +3,18 @@ import BookDetails from './BookDetails';
 import './Book.css'
 export default class Book extends React.Component{
     render(){
-        console.log(this.props)
-        let bookInfo=this.props.authors.map((author)=>{
-           return(
-             <div className="BookDetailsContainer">
-                <div className="imageContainer">
-                    <img src="https://bjwmartin.files.wordpress.com/2013/01/open_book_2.png" alt="Book"/>
-                </div> 
-                <div className="BookDets">
-                    <ul>
-                        <li>{author}</li>
-                        <li>Price</li>
-                        <li>Details</li>
-                    </ul>
-                </div>
-            </div>) 
-            })
+        let titles=this.props.titles.map((title,idx)=>{
+         return(
+            <div key={idx}>
+                <h2 >{title}</h2>
+                
+            </div>)
+         })
+        
         return(
         <div className="BookDetailsContainer">
-         {bookInfo}
+         {titles}
+         <BookDetails authors={this.props.authors} images={this.props.images} titles={this.props.titles}/>
         </div>)
     }}
     

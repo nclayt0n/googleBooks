@@ -13,6 +13,8 @@ class App extends React.Component {
     }
   } 
   sortData=(responseJson)=>{
+    console.log(responseJson)
+
     let authors= responseJson.items.map((item)=>item.volumeInfo.authors);
     let data=responseJson.items
    for(let i=0;i<data.length;i++){
@@ -52,6 +54,7 @@ class App extends React.Component {
   
  
   render(){
+    console.log(this.state)
     let mounted= this.state.authors.length>1?<BookList authors={this.state.authors} titles={this.state.titles} images={this.state.images}/>:null;
   return (
     <div className="App">
