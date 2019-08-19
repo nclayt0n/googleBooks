@@ -4,20 +4,25 @@ import Book from './Book';
 export default class BookList extends React.Component{
 
     render(){
-         let books=this.props.titles.map((idx)=>{
+        console.log(this.props)
+         let books=this.props.books.map((item,idx)=>{
+             console.log(item)
          return(
             <div key={idx}>
                 <Book 
-                authors={this.props.authors} 
-                images={this.props.images} 
-                titles={this.props.titles}/>
+                author={item.author} 
+                image={item.image} 
+                title={item.title}
+                price={item.price}
+                description={item.description}
+                />
             </div>)
          })
           
         return(
         <div className="BookList">
           {books}
-          
+
         </div>)
     }
 }
